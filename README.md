@@ -22,8 +22,8 @@ ZNTP is a a light weight phishing tool.
 ### Setup Steps
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/ZNTP.git
-   cd ZNTP
+   git clone https://github.com/Daniel-bekabtu/ZNTP
+   cd ZNTP/Project ZNTP
 2. Start the backend service:
    ```bash
    python Backbench_watcher.py   
