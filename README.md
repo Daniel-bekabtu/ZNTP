@@ -1,4 +1,4 @@
-# 🔐 ZNTP - Ethical Phishing Simulation Framework
+# 🔐 ZNTP - Light weight Phishing Simulation Framework
 
 ![GitHub](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Python](https://img.shields.io/badge/Python-3.8%2B-green.svg)
