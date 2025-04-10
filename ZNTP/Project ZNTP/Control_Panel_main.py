@@ -26,26 +26,45 @@ def Pre_load():
     with open("Cts_Value_master_key", "w") as Cts_wri:
         Cts_wri.writelines(Cts_Raw) 
 def Pre_Susces():
+    Recv_counter = 0
     suscess_counter = 0
+    Close_Tager = 0
     Launched_camp = os.listdir("bin_d")
+    if(Launched_camp == []):
+       Close_Tager = 1         
     for Buffer in Launched_camp:
-        with open("bin_d/"+Buffer, "r+") as Buffer_zone:
-            Buffer_init = Buffer_zone.readlines()
-            Buffer_init = Buffer_init[2]
-            Buffer_init = "".join(Buffer_init)
-            Buffer_init = int(Buffer_init)
-        with open("Recv/"+Buffer, "r+") as Recv_zone:
-            Recv_init = Recv_zone.readlines()
-            Recv_init = Recv_init[0]
-            Recv_init = "".join(Recv_init)
-            Recv_init = int(Recv_init)
-        if(Buffer_init == Recv_init):
-            suscess_counter += 1
-        with open("Cts_Value_master_key", "r") as Cts_val:
-         Cts_Raw = Cts_val.readlines()
-         Cts_Raw[3] = str(suscess_counter)+"\n"
-        with open("Cts_Value_master_key", "w") as Cts_wri:
-         Cts_wri.writelines(Cts_Raw)
+        if(Close_Tager == 0):
+            try:
+                with open("bin_d/"+Buffer, "r+") as Buffer_zone:
+                    Buffer_init = Buffer_zone.readlines()
+                    Buffer_init = Buffer_init[2]
+                    Buffer_init = "".join(Buffer_init)
+                    Buffer_init = int(Buffer_init)
+                with open("Recv/"+Buffer, "r+") as Recv_zone:
+                    Recv_init = Recv_zone.readlines()
+                    Recv_init = Recv_init[0]
+                    Recv_init = "".join(Recv_init)
+                    Recv_init = int(Recv_init)
+                    Recv_counter += Recv_init
+                    print(Recv_counter)
+                if(Buffer_init == Recv_init):
+                    suscess_counter += 1
+                with open("Cts_Value_master_key", "r") as Cts_val:
+                    Cts_Raw = Cts_val.readlines()
+                    Cts_Raw[1] = str(Recv_counter)+"\n"
+                    Cts_Raw[3] = str(suscess_counter)+"\n"
+                with open("Cts_Value_master_key", "w") as Cts_wri:
+                 Cts_wri.writelines(Cts_Raw)
+            except:
+                pass    
+    if(Close_Tager == 1):
+        with open("Cts_Value_master_key", "r") as Cts_Valu_re:
+            Cts_Raw = Cts_Valu_re.readlines()
+            Cts_Raw[1] = str(0)+"\n"
+            Cts_Raw[3] = str(0)+"\n"
+            Cts_Raw[0] = str(0)+"\n"
+        with open("Cts_Value_master_key", "w") as Cts_wri_re:
+            Cts_wri_re.writelines(Cts_Raw)   
 Pre_Susces()                                                          
 Pre_load()              
 def load_values():
